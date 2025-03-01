@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pancreatic Tumor Detection</title>
+    <link rel="stylesheet" href="/static/css/detection.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+</head>
+<body>
+
+<!-- Navbar -->
+<header>
+    <div class="container-header">
+        <div class="navbar">
+            <div class="logo">
+            <img src="/static/img/img21.png" width="60px" height="60px">
+            <h2>Pancreatic Tumor Detection System</h2>
+        </div>
+            <nav class="navbar-list">
+                <a href="/home">HOME</a>
+                <a href="/performance">PERFORMANCE</a>
+                <a href="/logout" id="logout-link">LOGOUT</a>
+                <div class="user-logged-in">
+                    <i class="fa-solid fa-user"></i>
+                    {{user.email}}
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+
+<!-- Main Content -->
+<main>
+    <div class="container">
+        <h1 class="text-center">Tumor Detection</h1>
+
+        <!-- File Upload Form -->
+        <form id="uploadForm" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="file">Upload CT Scan Image:</label>
+                <input type="file" id="file" name="file" class="form-control" onchange="previewImage(event)" required>
+            </div>
+            <!-- Image preview container -->
+            <div id="imagePreview"></div> 
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+        <!-- Results display -->
+        <div id="result"></div>
+    </div>
+</main>
+
+<!-- Footer -->
+<footer>
+    <section class="contact">
+        <div class="container-footer">
+        <div class="about">
+        <h2>About Us</h2>
+        <p>We are a team of medical professionals, AI researchers, 
+            and software engineers committed to developing advanced 
+            image processing techniques that enhance the detection 
+            of pancreatic tumors in CT, MRI, and ultrasound scans. 
+            By leveraging deep learning algorithms, image enhancement, 
+            and segmentation methods, we aim to support radiologists 
+            and oncologists in making precise diagnoses.</p>
+        <h2>Our Mission</h2>
+        <p>Our mission is to bridge the gap between AI and healthcare, 
+            making pancreatic cancer detection faster, more accurate, 
+            and accessible to all. By developing automated and intelligent 
+            image analysis tools, we aim to improve survival rates through 
+            early intervention.</p>
+        </div>
+
+        <div class="follow-us">
+            <h2>Follow Us On</h2>
+            <div class="social-container">
+                <a href="https://facebook.com" class="social-link facebook">
+                    <i class="fab fa-facebook-f"></i> <span>Facebook</span>
+                </a>
+                <a href="https://twitter.com" class="social-link twitter">
+                    <i class="fab fa-twitter"></i> <span>Twitter</span>
+                </a>
+                <a href="https://instagram.com" class="social-link instagram">
+                    <i class="fab fa-instagram"></i> <span>Instagram</span>
+                </a>
+                <a href="https://linkedin.com" class="social-link linkedin">
+                    <i class="fab fa-linkedin-in"></i> <span>LinkedIn</span>
+                </a>
+            </div>
+            </div>
+
+            <div class="contact-card">
+                <h3>Contact Us</h3>
+                <form id="contactForm" action="/contact" method="POST">
+                    <input type="text" name="name" placeholder="Your Name" required>
+                    <input type="email" name="email" placeholder="Your Email" required>
+                    <textarea input type="text" name="message" placeholder="Your Message" required></textarea>   
+                    <button type="submit">Send</button>
+                </form>
+                </div>
+            </div>
+        </section>
+    <hr>
+    <p style="margin: 0;">© 2025 Pancreatic Tumor Detection. All rights reserved.</p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+// Handle form submission without refreshing the page
+document.getElementById('uploadForm').addEventListener('submit', async (event) => {
+    event.preventDefault(); 
+
+    const formData = new FormData(event.target);
+    const resultDiv = document.getElementById('result');
+
+    resultDiv.innerHTML = '<p class="text-info">Processing... Please wait.</p>';
+
+    try {
+        const response = await fetch('/upload', { method: 'POST', body: formData });
+        const result = await response.json();
+
+        resultDiv.innerHTML = response.ok 
+            ? `<div class="alert alert-success"><h4>${result.message}</h4></div>` 
+            : `<div class="alert alert-danger"><p><strong>Error:</strong> ${result.message}</p></div>`;
+
+    } catch (error) {
+        resultDiv.innerHTML = `<div class="alert alert-danger"><p><strong>Error:</strong> Could not process the image. Please try again later.</p></div>`;
+    }
+});
+
+// Handle image preview
+function previewImage(event) {
+    const imagePreview = document.getElementById('imagePreview');
+    imagePreview.innerHTML = '';
+
+    const file = event.target.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+            const img = document.createElement('img');
+            img.src = e.target.result;
+            img.className = 'preview-img';
+            imagePreview.appendChild(img);
+        };
+        reader.readAsDataURL(file);
+    }
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+    // Check if user is logged in (Modify this condition based on your backend logic)
+    let isLoggedIn = localStorage.getItem("loggedIn"); // Simulating login status
+
+    if (isLoggedIn) {
+        document.getElementById("login-link").style.display = "none";
+        document.getElementById("logout-link").style.display = "inline-block";
+    } else {
+        document.getElementById("login-link").style.display = "inline-block";
+        document.getElementById("logout-link").style.display = "none";
+    }
+
+    // Logout event listener
+    document.getElementById("logout-link").addEventListener("click", function(event) {
+        event.preventDefault();
+        fetch('/logout', { method: 'POST' }) // Call Flask Logout Route
+            .then(response => {
+                if (response.ok) {
+                    localStorage.removeItem("loggedIn"); // Clear session
+                    window.location.href = "/login"; // Redirect to login page
+                }
+            });
+    });
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+    const contactForm = document.getElementById("contactForm");
+
+    if (contactForm) {
+        contactForm.addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            const formData = new FormData(this);
+
+            fetch("/contact", {
+                method: "POST",
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === "success") {
+                    Swal.fire("Success!", data.message, "success");
+                    contactForm.reset();
+                } else {
+                    Swal.fire("Error!", data.message, "error");
+                }
+            })
+            .catch(error => {
+                Swal.fire("Error!", "Something went wrong. Please try again.", "error");
+                console.error("Error:", error);
+            });
+        });
+    }
+});
+</script>
+
+</body>
+</html>

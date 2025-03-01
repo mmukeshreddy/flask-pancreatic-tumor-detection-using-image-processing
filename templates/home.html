@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pancreatic Tumor Detection System</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="/static/css/home.css">
+
+</head>
+<body>
+
+    <header>
+        <div class="container-header">
+            <div class="navbar">
+                <div class="logo">
+                <img src="/static/img/img21.png" width="100px" height="100px">
+                <h2>Pancreatic Tumor Detection System</h2>
+            </div>
+                <nav class="navbar-list">
+                    <a href="/home">HOME</a>
+                    <a href="/detection">DETECTION</a>
+                    <a href="/logout" id="logout-link">LOGOUT</a>
+                    <div class="user-logged-in">
+                        <i class="fa-solid fa-user"></i>
+                            {{ user.email }}
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </header>
+        <section class="hero">
+            <div class="container-hero">
+            <h2>Early Detection Saves Lives</h2>
+            <p>Our advanced AI-driven system helps detect pancreatic tumors with high accuracy.</p>
+            <button onclick="window.location.href='http://127.0.0.1:5000/login';"class="cta-button">GET STARTED</a>
+                </button>
+            </div>
+        </section>
+     
+        <section class="why-choose">
+            <div class="container-why">
+                <h2>Why Choose Our Detection System?</h2>
+                <p>Our system provides fast and accurate tumor detection using state-of-the-art medical imaging techniques.</p>
+                
+                <div class="grid-container">
+                    <!-- Left Side Features -->
+                    <div class="feature-column left">
+                        <div class="feature-box">
+                            <h4>High Accuracy</h4>
+                            <p>Uses advanced imaging techniques to detect tumors with precision.</p>
+                        </div>
+                        <div class="feature-box">
+                            <h4>Fast Results</h4>
+                            <p>Delivers rapid analysis, reducing wait times for diagnosis.</p>
+                        </div>
+                        <div class="feature-box">
+                            <h4>Early Detection</h4>
+                            <p>Helps identify pancreatic tumors at an early stage.</p>
+                        </div>
+                    </div>
+            
+                    <!-- Center Image -->
+                    <div class="image-container">
+                        <img src="/static/img/img3.jpg" alt="Medical Imaging">
+                    </div>
+            
+                    <!-- Right Side Features -->
+                    <div class="feature-column right">
+                        <div class="feature-box">
+                            <h4>Expert-Validated</h4>
+                            <p>Developed and tested in collaboration with medical professionals.</p>
+                        </div>
+                        <div class="feature-box">
+                            <h4>Non-Invasive Procedure</h4>
+                            <p>Uses imaging technology without requiring surgical intervention.</p>
+                        </div>
+                        <div class="feature-box">
+                            <h4>User-Friendly Interface</h4>
+                            <p>Easy-to-use system designed for both doctors and patients.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    
+
+        <section class="features">
+            <div class="container-features">
+                <h2>Key Features</h2>
+                <div class="content">
+                    <!-- Left Side: Text Features -->
+                    <div class="text-box">
+                        <div class="text">
+                            <h3>AI-Based Image Analysis</h3>
+                            <p>Utilizes machine learning and deep learning algorithms to analyze medical images (CT, MRI, Ultrasound). 
+                                Identifies abnormalities and potential tumor regions with high accuracy.</p>
+                        </div>
+                        <div class="text">
+                            <h3>Fast & Automated Results</h3>
+                            <p>Provides rapid image processing and analysis, reducing diagnostic wait times. 
+                                Helps doctors make quicker and more informed decisions.</p>
+                        </div>
+                        <div class="text">
+                            <h3>Cloud-Based Report Generation & Visualization</h3>
+                            <p>Generates detailed medical reports with tumor insights. 
+                                Provides secure cloud storage for easy access by doctors and hospitals.</p>
+                        </div>
+                        <div class="text">
+                            <h3>Integration with Medical Systems</h3>
+                            <p>Compatible with hospital databases and electronic health record (EHR) systems. 
+                                Allows seamless sharing of diagnostic results among healthcare providers.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    
+
+    <section class="services">
+        <div class="container-services">
+        <h2>SERVICES</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <img src="/static/img/img4.jpg" alt="Medical Image Analysis" >
+                <h4>Medical Image Analysis</h4>
+                <p>Medical Image Analysis involves processing and interpreting medical images (CT, MRI, X-ray, Ultrasound).</p>
+            </div>
+            <div class="service-card">
+                <img src="/static/img/img13.jpg" alt="Tumor Detection" >
+                <h4>Tumor Detection & Classification</h4>
+                <p>Automated tumor detection using advanced image processing techniques.</p>
+            </div>
+            <div class="service-card">
+                <img src="/static/img/img17.jpg" alt="Non-Invasive Screening" >
+                <h4>Non-Invasive Screening & Diagnosis</h4>
+                <p>Early detection of pancreatic tumors through image-based assessment.</p>
+            </div>
+            <div class="service-card">
+                <img src="/static/img/img14.jpg" alt="Report Generation" >
+                <h4>Report Generation & Visualization</h4>
+                <p>Generating detailed medical reports with tumor insights.</p>
+            </div>
+            <div class="service-card">
+                <img src="/static/img/img7.jpg" alt="Integration with Medical Systems" >
+                <h4>Integration with Medical Systems</h4>
+                <p>Cloud-based storage and access for hospitals and clinics.</p>
+            </div>
+            <div class="service-card">
+                <img src="/static/img/img16.jpg" alt="Integration with Medical Systems" >
+                <h4>Image Preprocessing & Enhancement</h4>
+                <p>Image preprocessing and enhancement are crucial steps in ensuring better visualization, noise reduction, and feature extraction for accurate diagnosis.</p>
+            </div>
+        </div>
+    </div>
+    </section>
+    
+<footer>
+    <section class="contact">
+        <div class="container-footer">
+        <div class="about">
+        <h2>About Us</h2>
+        <p>We are a team of medical professionals, AI researchers, 
+            and software engineers committed to developing advanced 
+            image processing techniques that enhance the detection 
+            of pancreatic tumors in CT, MRI, and ultrasound scans. 
+            By leveraging deep learning algorithms, image enhancement, 
+            and segmentation methods, we aim to support radiologists 
+            and oncologists in making precise diagnoses.</p>
+        <h2>Our Mission</h2>
+        <p>Our mission is to bridge the gap between AI and healthcare, 
+            making pancreatic cancer detection faster, more accurate, 
+            and accessible to all. By developing automated and intelligent 
+            image analysis tools, we aim to improve survival rates through 
+            early intervention.</p>
+        </div>
+
+        <div class="follow-us">
+            <h2>Follow Us On</h2>
+            <div class="social-container">
+                <a href="https://facebook.com" class="social-link facebook">
+                    <i class="fab fa-facebook-f"></i> <span>Facebook</span>
+                </a>
+                <a href="https://twitter.com" class="social-link twitter">
+                    <i class="fab fa-twitter"></i> <span>Twitter</span>
+                </a>
+                <a href="https://instagram.com" class="social-link instagram">
+                    <i class="fab fa-instagram"></i> <span>Instagram</span>
+                </a>
+                <a href="https://linkedin.com" class="social-link linkedin">
+                    <i class="fab fa-linkedin-in"></i> <span>LinkedIn</span>
+                </a>
+            </div>
+            </div>
+
+            <div class="contact-card">
+            <h3>Contact Us</h3>
+            <form id="contactForm" action="/contact" method="POST">
+                <input type="text" name="name" placeholder="Your Name" required>
+                <input type="email" name="email" placeholder="Your Email" required>
+                <textarea input type="text" name="message" placeholder="Your Message" required></textarea>   
+                <button type="submit">Send</button>
+            </form>
+            </div>
+            </div>
+        </section>
+    <hr>
+    <p style="margin: 0;">© 2025 Pancreatic Tumor Detection. All rights reserved.</p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    
+document.addEventListener("DOMContentLoaded", function () {
+    const contactForm = document.getElementById("contactForm");
+
+    if (contactForm) {
+        contactForm.addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            const formData = new FormData(this);
+
+            fetch("/contact", {
+                method: "POST",
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === "success") {
+                    Swal.fire("Success!", data.message, "success");
+                    contactForm.reset();
+                } else {
+                    Swal.fire("Error!", data.message, "error");
+                }
+            })
+            .catch(error => {
+                Swal.fire("Error!", "Something went wrong. Please try again.", "error");
+                console.error("Error:", error);
+            });
+        });
+    }
+});
+</script>
+
+
+</script>
+</body>
+</html>
+
+

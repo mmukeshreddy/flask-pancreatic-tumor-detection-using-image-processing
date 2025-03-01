@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pancreatic Tumor Detection - Login</title>
+
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/static/css/login.css">
+
+    <!-- SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+    <header>
+        <div class="container-header">
+            <div class="navbar">
+                <div class="logo">
+                    <img src="/static/img/img21.png" width="60px" height="60px">
+                    <h2>Pancreatic Tumor Detection System</h2>
+                </div>
+                <nav>
+                    <b>
+                        <a href="/home">HOME</a>
+                        <a href="/registration">SIGNUP</a>
+                    </b>
+                </nav>
+            </div>
+        </div>
+    </header>
+    
+    <main>
+        <div class="container">
+            <h2>WELCOME</h2>
+            <p>Please enter your details</p>
+
+            <form id="authForm" method="POST">
+                <label>Email</label>
+                <input type="email" name="email" placeholder="Enter email address" required>
+
+                <label>Password</label>
+                <input type="password" name="password" placeholder="Enter password" required>
+
+                <div class="auth-options">
+                    <div class="checkbox-container">
+                        <div class="remember">
+                            <input type="checkbox" id="remember">
+                            <label for="remember">Remember&nbsp;me</label>
+                        </div>
+                        <a href="/forgot-password" class="forgot-password">Forgot Password?</a>
+                    </div>
+                </div>
+
+                <button type="submit">Sign In</button>
+            </form>
+
+            <b>Or</b>
+
+            <div class="social-btn">
+                <button class="google-btn" onclick="socialLogin('google')">
+                    <i class="fa-brands fa-google"></i> Sign in with Google
+                </button>
+                <button class="google-btn" onclick="socialLogin('email')">
+                    <i class="fas fa-envelope"></i> Sign in with Email
+                </button>
+            </div>
+
+            <p>Don’t have an account? <a href="/registration">Sign up</a></p>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Pancreatic Tumor Detection. All rights reserved.</p>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+    document.getElementById('authForm').onsubmit = async function (event) {
+        event.preventDefault(); // Prevent page reload
+
+        const formData = new FormData(this);
+        const response = await fetch('/login', {
+            method: 'POST',
+            body: formData,
+        });
+
+        const result = await response.json();
+
+        if (response.ok) {
+            Swal.fire({
+                icon: 'success',
+                title: 'Login Successful!',
+                text: 'Redirecting to the home page...',
+                showConfirmButton: false,
+                timer: 2000
+            }).then(() => {
+                window.location.href = '/home'; // Redirect after success
+            });
+        } else {
+            Swal.fire({
+                icon: 'error',
+                title: 'Login Failed!',
+                text: result.error || 'Invalid credentials. Please try again.',
+                confirmButtonText: "OK"
+            });
+        }
+    };
+
+    function socialLogin(method) {
+        Swal.fire({
+            icon: 'info',
+            title: `Login with ${method.charAt(0).toUpperCase() + method.slice(1)} is not implemented yet.`,
+            text: "Please use the email and password login for now.",
+            confirmButtonColor: "#3085d6"
+        });
+    }
+    </script>
+</body>
+</html>

@@ -1,0 +1,10 @@
+Metric,Value
+Accuracy,1.0
+Precision,1.0
+Recall,1.0
+F1-Score,1.0
+
+Confusion Matrix
+,Predicted No Tumor,Predicted Tumor
+Actual No Tumor,33,0
+Actual Tumor,0,36

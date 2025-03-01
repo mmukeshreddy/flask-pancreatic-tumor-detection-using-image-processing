@@ -1,0 +1,14 @@
+Flask
+flask-login
+Werkzeug
+mysql-connector-python
+Flask-MySQLdb
+tensorflow
+numpy
+pillow
+pydicom
+matplotlib
+seaborn
+scikit-learn
+reportlab
+uuid
